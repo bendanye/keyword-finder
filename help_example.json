@@ -1,0 +1,14 @@
+{
+  "helps": [
+    {
+      "keyword": "list",
+      "type": "list",
+      "list": ["a", "b", "c", "d"]
+    },
+    {
+      "keyword": "command",
+      "type": "command",
+      "command": "ls ."
+    }
+  ]
+}
