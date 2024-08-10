@@ -3,12 +3,22 @@
     {
       "keyword": "list",
       "type": "list",
-      "list": ["a", "b", "c", "d"]
+      "list": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ]
     },
     {
       "keyword": "command",
       "type": "command",
       "command": "ls ."
+    },
+    {
+      "keyword": "glog",
+      "type": "command",
+      "command": "git --git-dir=/app/${1}/.git --work-tree=app/${1} log -n 20 --pretty=format:%s"
     }
   ]
 }
