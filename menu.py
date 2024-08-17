@@ -27,7 +27,10 @@ def _options(keyword: str, file_name: str, extra_arg: str) -> List[str]:
                 if type == "list":
                     return item[type]
                 elif type == "command":
-                    commands = item[type].replace("${1}", extra_arg).split(" ")
+                    command_arg = item[type]
+                    if extra_arg:
+                        command_arg = command_arg.replace("${1}", extra_arg)
+                    commands = command_arg.split(" ")
                     result = subprocess.run(commands, stdout=subprocess.PIPE, text=True)
                     # Split the output by newlines to create a list
                     output = result.stdout.split("\n")
