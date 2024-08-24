@@ -1,6 +1,6 @@
 # keyword-finder
 
-A simple tool that will display a menu and able to search and copy it.  
+A simple tool that will display a list and able to search and copy it.  
 
 ## Prerequisites
 
@@ -17,13 +17,13 @@ pip install -r requirements.txt
 ### Run the program
 
 ```shell
-python3 menu.py <<file_name.json>> <<option>>
+python3 main.py <<file_name.json>> <<option>>
 ```
 
 For example
 
 ```shell
-python3 menu.py help_example.json command
+python3 main.py help_example.json command
 ```
 
 ## Demo
