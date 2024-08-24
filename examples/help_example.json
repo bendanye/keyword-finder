@@ -16,9 +16,9 @@
       "command": "ls ."
     },
     {
-      "keyword": "glog",
+      "keyword": "file",
       "type": "command",
-      "command": "git --git-dir=/app/${1}/.git --work-tree=app/${1} log -n 20 --pretty=format:%s"
+      "command": "cat ${1}"
     }
   ]
 }
