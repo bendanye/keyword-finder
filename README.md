@@ -1,6 +1,6 @@
 # keyword-finder
 
-A simple tool that will display a list and able to search and copy it.  
+A simple tool that will display a list and able to search and copy it.
 
 ## Prerequisites
 
