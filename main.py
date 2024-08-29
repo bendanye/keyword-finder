@@ -3,13 +3,14 @@ import pyperclip
 import sys
 import json
 
-from typing import List
+from typing import Dict, List
 
 from simple_term_menu import TerminalMenu
 
 
 def main(keyword: str, file_name: str = "help.json", extra_arg=None) -> None:
-    options = _options(keyword, file_name, extra_arg)
+    help = _get_help(keyword, file_name)
+    options = _options(help, extra_arg)
 
     terminal_menu = TerminalMenu(options, search_key=None)
     menu_entry_index = terminal_menu.show()
@@ -18,26 +19,30 @@ def main(keyword: str, file_name: str = "help.json", extra_arg=None) -> None:
         print(f"You have copied {options[menu_entry_index]}!")
 
 
-def _options(keyword: str, file_name: str, extra_arg: str) -> List[str]:
+def _get_help(keyword: str, file_name: str) -> Dict:
     with open(file_name, "r") as json_file:
         helps = json.load(json_file)["helps"]
         for item in helps:
             if keyword == item["keyword"]:
-                type = item["type"]
-                if type == "list":
-                    return item[type]
-                elif type == "command":
-                    command_arg = item[type]
-                    if extra_arg:
-                        command_arg = command_arg.replace("${1}", extra_arg)
-                    commands = command_arg.split(" ")
-                    result = subprocess.run(commands, stdout=subprocess.PIPE, text=True)
-                    # Split the output by newlines to create a list
-                    output = result.stdout.split("\n")
-                    # Remove any empty strings from the list (e.g., the last element if there's a trailing newline)
-                    return [line for line in output if line]
+                return item
 
-        raise ValueError(f"Unknown option, {keyword}")
+    raise ValueError(f"Unknown option, {keyword}")
+
+
+def _options(help: Dict, extra_arg: str) -> List[str]:
+    type = help["type"]
+    if type == "list":
+        return help[type]
+    elif type == "command":
+        command_arg = help[type]
+        if extra_arg:
+            command_arg = command_arg.replace("${1}", extra_arg)
+        commands = command_arg.split(" ")
+        result = subprocess.run(commands, stdout=subprocess.PIPE, text=True)
+        # Split the output by newlines to create a list
+        output = result.stdout.split("\n")
+        # Remove any empty strings from the list (e.g., the last element if there's a trailing newline)
+        return [line for line in output if line]
 
 
 if __name__ == "__main__":
