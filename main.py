@@ -2,6 +2,7 @@ import subprocess
 import pyperclip
 import sys
 import json
+import re
 
 from typing import Dict, List
 
@@ -47,7 +48,22 @@ def _options(help: Dict, extra_arg: str) -> List[str]:
 
 
 def _get_line(help: Dict, options: List[str], selected_index: int) -> str:
-    return options[selected_index]
+    selected_line = options[selected_index]
+    if "copy_pattern" not in help:
+        return selected_line
+
+    pattern = help["copy_pattern"]
+
+    if pattern == "[*]":
+        regex_pattern = r"\[.*?\]"
+    else:
+        regex_pattern = re.escape(pattern)
+
+    match = re.search(regex_pattern, selected_line)
+    if match:
+        return match.group(0)
+    else:
+        return selected_line
 
 
 if __name__ == "__main__":

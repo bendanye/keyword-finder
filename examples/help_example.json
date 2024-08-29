@@ -18,7 +18,8 @@
     {
       "keyword": "file",
       "type": "command",
-      "command": "cat ${1}"
+      "command": "cat ${1}",
+      "copy_pattern": "[*]"
     }
   ]
 }
