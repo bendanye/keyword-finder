@@ -11,7 +11,7 @@ from simple_term_menu import TerminalMenu
 
 def main(keyword: str, file_name: str = "help.json", extra_arg=None) -> None:
     help = _get_help(keyword, file_name)
-    options = _options(help, extra_arg)
+    options = _get_options(help, extra_arg)
 
     terminal_menu = TerminalMenu(options, search_key=None)
     menu_entry_index = terminal_menu.show()
@@ -31,7 +31,7 @@ def _get_help(keyword: str, file_name: str) -> Dict:
     raise ValueError(f"Unknown option, {keyword}")
 
 
-def _options(help: Dict, extra_arg: str) -> List[str]:
+def _get_options(help: Dict, extra_arg: str) -> List[str]:
     type = help["type"]
     if type == "list":
         return help[type]
