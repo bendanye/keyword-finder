@@ -15,8 +15,9 @@ def main(keyword: str, file_name: str = "help.json", extra_arg=None) -> None:
     terminal_menu = TerminalMenu(options, search_key=None)
     menu_entry_index = terminal_menu.show()
     if menu_entry_index is not None:
-        pyperclip.copy(options[menu_entry_index])
-        print(f"You have copied {options[menu_entry_index]}!")
+        line = _get_line(help, options, menu_entry_index)
+        print(f"You have copied {line}!")
+        pyperclip.copy(line)
 
 
 def _get_help(keyword: str, file_name: str) -> Dict:
@@ -43,6 +44,10 @@ def _options(help: Dict, extra_arg: str) -> List[str]:
         output = result.stdout.split("\n")
         # Remove any empty strings from the list (e.g., the last element if there's a trailing newline)
         return [line for line in output if line]
+
+
+def _get_line(help: Dict, options: List[str], selected_index: int) -> str:
+    return options[selected_index]
 
 
 if __name__ == "__main__":
