@@ -57,9 +57,9 @@ def _get_line(help: Dict, options: List[str], selected_index: int) -> str:
     if pattern == "[*]":
         regex_pattern = r"\[.*?\]"
     else:
-        regex_pattern = re.escape(pattern)
+        regex_pattern = pattern
 
-    match = re.search(regex_pattern, selected_line)
+    match = re.search(regex_pattern, selected_line, re.DOTALL)
     if match:
         return match.group(0)
     else:
