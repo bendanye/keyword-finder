@@ -20,6 +20,15 @@
       "type": "command",
       "command": "cat ${1}",
       "copy_pattern": "[*]"
+    },
+    {
+      "keyword": "multiple_commands",
+      "type": "list",
+      "list": [
+        "be:a\nb\nc",
+        "fe:bbbbb\nccccc"
+      ],
+      "copy_pattern": ":(.*)"
     }
   ]
 }
