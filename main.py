@@ -12,6 +12,9 @@ from simple_term_menu import TerminalMenu
 def main(keyword: str, file_name: str = "help.json", extra_arg=None) -> None:
     help = _get_help(keyword, file_name)
     options = _get_options(help, extra_arg)
+    if not options:
+        print("No options to display")
+        return
 
     terminal_menu = TerminalMenu(options, search_key=None)
     menu_entry_index = terminal_menu.show()
