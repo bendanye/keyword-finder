@@ -29,6 +29,17 @@
         "fe:bbbbb\nccccc"
       ],
       "copy_pattern": ":(.*)"
+    },
+    {
+      "keyword": "get_anything_before_colon_example",
+      "type": "list",
+      "list": [
+        "a: this is a",
+        "b: this is b",
+        "c: this is c",
+        "d: this is d"
+      ],
+      "copy_pattern": ".+?(?=:)"
     }
   ]
 }
