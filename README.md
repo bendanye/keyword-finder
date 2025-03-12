@@ -10,6 +10,8 @@ At least Python 3.7
 
 ### Install required library
 
+source .venv/bin/activate
+
 ```shell
 pip install -r requirements.txt
 ```
