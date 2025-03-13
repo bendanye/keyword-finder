@@ -8,6 +8,12 @@ At least Python 3.7
 
 ## Project Setup & Commands
 
+### Install venv
+
+```shell
+python3 -m venv .venv
+```
+
 ### Install required library
 
 source .venv/bin/activate
